@@ -1,0 +1,4 @@
+rootProject.name = 'multimodule-actions'
+
+include 'client'
+include 'server'
