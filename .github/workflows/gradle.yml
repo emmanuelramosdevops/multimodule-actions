@@ -28,8 +28,8 @@ jobs:
 
       - name: Docker Build
         env:
-          ECR_REGISTRY: ${{ env.$ECR_REGISTRY }}
-          ECR_REPOSITORY: ${{ env.$ECR_REPOSITORY }}
+          ECR_REGISTRY: ${{ env.ECR_REGISTRY }}
+          ECR_REPOSITORY: ${{ env.ECR_REPOSITORY }}
           ECR_IMAGE: $ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_SHA
         run: |
           echo "::set-output name=image::$ECR_IMAGE"
