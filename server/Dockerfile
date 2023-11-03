@@ -21,8 +21,7 @@ WORKDIR /opt
 
 COPY --from=Build /opt/app/build/libs/*.jar /opt
 
-RUN \
-    adduser -D 1001
+RUN adduser -D 1001
 
 USER 1001
 
