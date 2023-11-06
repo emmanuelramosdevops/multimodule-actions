@@ -1,4 +1,4 @@
-name: Build and Push to ECR
+name: Server - Build + Push ECR
 
 on:
   push:

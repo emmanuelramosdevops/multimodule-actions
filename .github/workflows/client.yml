@@ -1,4 +1,4 @@
-name: Build + Push ECR
+name: Client - Build + Push ECR
 
 on:
   push:
