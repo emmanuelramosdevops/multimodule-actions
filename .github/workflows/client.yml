@@ -6,7 +6,6 @@ on:
       - dev
     paths:
       - 'client/**'
-      - 'server/**'
 
 jobs:
   build-push:
@@ -29,7 +28,7 @@ jobs:
 
       - name: Docker Build + Push
         env:
-          ECR_IMAGE: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:${{github.sha}}
+          ECR_IMAGE: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:client-${{github.sha}}
         run: |
           echo $ECR_IMAGE
           docker build -t $ECR_IMAGE ./client/.
