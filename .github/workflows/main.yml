@@ -9,7 +9,7 @@ on:
       - 'server/**'
 
 jobs:
-  BuildAndPushImageToECR:
+  build-push:
     name: Build and Push to ECR
     runs-on: ubuntu-latest
     environment: Dev
@@ -31,8 +31,6 @@ jobs:
         env:
           ECR_IMAGE: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:${{github.sha}}
         run: |
-          set -x
-          cd ./client
           echo $ECR_IMAGE
-          docker build -t $ECR_IMAGE .
+          docker build -t $ECR_IMAGE ./client/.
           docker push $ECR_IMAGE
