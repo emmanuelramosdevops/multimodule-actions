@@ -12,4 +12,6 @@ jobs:
     uses: ./.github/workflows/ecr-push.yml
     with:
       work-dir: client
+      if: ${{ github.ref == 'refs/heads/dev' }}
+      environment: Dev
     secrets: inherit
