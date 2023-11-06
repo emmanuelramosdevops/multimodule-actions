@@ -27,7 +27,7 @@ jobs:
       - name: Login to ECR
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Docker Build
+      - name: Docker Build + Push
         env:
           ECR_IMAGE: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:${{github.sha}}
         run: |
