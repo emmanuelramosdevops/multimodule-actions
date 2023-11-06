@@ -9,6 +9,6 @@ on:
 
 jobs:
   call-workflow:
-    uses: .github/workflows/reusable.yml
+    uses: ./.github/workflows/reusable.yml
     with:
       work-dir: ./client
