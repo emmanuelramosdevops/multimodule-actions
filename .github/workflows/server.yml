@@ -32,5 +32,5 @@ jobs:
         run: |
           echo $ECR_IMAGE
           cd server
-          docker build -t $ECR_IMAGE ./server/.
+          docker build -t $ECR_IMAGE .
           docker push $ECR_IMAGE
