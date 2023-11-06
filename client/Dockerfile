@@ -9,6 +9,7 @@ COPY src src
 
 RUN gradle bootJar -x test
 
+
 # Run
 FROM --platform=linux/amd64 openjdk:17-jdk-alpine
 
