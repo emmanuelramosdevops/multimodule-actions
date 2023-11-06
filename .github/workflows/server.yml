@@ -8,29 +8,8 @@ on:
       - 'server/**'
 
 jobs:
-  build-push:
-    name: Build and Push to ECR
-    runs-on: ubuntu-latest
-    environment: Dev
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: us-east-2
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name: Login to ECR
-        uses: aws-actions/amazon-ecr-login@v2
-
-      - name: Docker Build + Push
-        env:
-          ECR_IMAGE: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:server-${{github.sha}}
-        run: |
-          echo $ECR_IMAGE
-          cd server
-          docker build -t $ECR_IMAGE .
-          docker push $ECR_IMAGE
+  call-workflow:
+    uses: ./.github/workflows/ecr-push.yml
+    with:
+      work-dir: server
+    secrets: inherit

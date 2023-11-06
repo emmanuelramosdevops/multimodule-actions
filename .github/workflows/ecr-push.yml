@@ -26,8 +26,8 @@ jobs:
 
       - name: Docker Build + Push
         env:
-          ECR_IMAGE: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:server-${{github.sha}}
+          ECR_IMAGE: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:${{ inputs.work-dir }}-${{github.sha}}
         run: |
-          cd ${{ inputs.work-dir }} 
+          cd ./${{ inputs.work-dir }} 
           docker build -t $ECR_IMAGE .
           docker push $ECR_IMAGE

@@ -9,7 +9,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: ./.github/workflows/reusable.yml
+    uses: ./.github/workflows/ecr-push.yml
     with:
-      work-dir: ./client
+      work-dir: client
     secrets: inherit
