@@ -31,5 +31,6 @@ jobs:
           ECR_IMAGE: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:server-${{github.sha}}
         run: |
           echo $ECR_IMAGE
+          cd server
           docker build -t $ECR_IMAGE ./server/.
           docker push $ECR_IMAGE
