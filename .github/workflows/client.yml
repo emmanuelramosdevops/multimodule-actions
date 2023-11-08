@@ -13,7 +13,8 @@ jobs:
     with:
       work-dir: client
       aws-region: ${{ vars.STAGE_AWS_REGION }}
-      aws-access-key: ${{ secrets.STAGE_AWS_ACCESS_KEY_ID }}
-      aws-secret-access-key: ${{ secrets.STAGE_AWS_SECRET_ACCESS_KEY }}
       ecr-registry: ${{ vars.STAGE_ECR_REGISTRY }}
       ecr-repository: ${{ vars.STAGE_ECR_REPOSITORY }}
+    secrets:
+      aws-access-key: ${{ secrets.STAGE_AWS_ACCESS_KEY_ID }}
+      aws-secret-access-key: ${{ secrets.STAGE_AWS_SECRET_ACCESS_KEY }}
