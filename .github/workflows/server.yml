@@ -2,8 +2,7 @@ name: Server - Build + Push ECR
 
 on:
   push:
-    branches:
-      - dev
+    branches: [main, stage]
     paths:
       - 'server/**'
 

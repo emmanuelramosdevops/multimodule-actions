@@ -4,7 +4,19 @@ on:
       work-dir:
         required: true
         type: string
-      environment:
+      aws-region:
+        required: true
+        type: string
+      aws-access-key:
+        required: true
+        type: string
+      aws-secret-access-key:
+        required: true
+        type: string
+      ecr-registry:
+        required: true
+        type: string
+      ecr-repository:
         required: true
         type: string
 
@@ -12,7 +24,6 @@ jobs:
   build-push:
     name: Build and Push to ECR
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,16 +31,16 @@ jobs:
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: us-east-2
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ inputs.aws-region }}
+          aws-access-key-id: ${{ inputs.aws-access-key }}
+          aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
 
       - name: ECR Login
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Docker Build + Push
         env:
-          ECR_IMAGE: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:${{ inputs.work-dir }}-${{github.sha}}
+          ECR_IMAGE: ${{ inputs.ecr-registry }}/${{ inputs.ecr-repository }}:${{ inputs.work-dir }}-${{github.sha}}
         run: |
           cd ./${{ inputs.work-dir }} 
           docker build -t $ECR_IMAGE .
